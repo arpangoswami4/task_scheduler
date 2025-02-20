@@ -1,0 +1,23 @@
+.flex-row{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.flex-col{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.margin-less {
+  margin: 0;
+}
+
+td{
+  text-align: center;
+}
+
+.text-center {
+  text-align: center;
+}

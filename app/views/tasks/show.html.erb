@@ -1,0 +1,27 @@
+<div class="flex-col">
+  <h2>Task Info</h2>
+
+  <div class="flex-col">
+    <div>
+      Task Title
+      <%= @task.title %><br />
+    </div>
+    <div>
+      Task Description
+      <%= @task.description %><br />
+    </div>
+    <div>
+      Task Due Date
+      <%= @task.due_date %><br />
+    </div>
+    <div>
+      Task Status
+      <%= @task.status %><br />
+    </div>
+    <div class="flex-row">
+      <%= link_to "Edit Task", edit_task_path(@task) %>
+      <%= button_to "Delete Task", task_path(@task), method: :delete %>
+    </div>
+
+  </div>
+</div>

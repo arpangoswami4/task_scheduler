@@ -1,0 +1,11 @@
+
+<div class="flex-row">
+  <%= form_with url: url, method: :get do%>
+    <%= label_tag :status, "Status" %>
+    <%= select_tag :status, options_for_select(["","pending", "in-progress", "completed"], params[:status]) %>
+    <%= label_tag :search_term, "Title Search" %>
+    <%= text_field_tag :search_term, params[:search_term], placeholder: "title" %>
+    <%= submit_tag "Filter and Search", name: nil %>
+    <%= link_to "Clear Filter", url %>
+  <% end %>
+</div>

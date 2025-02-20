@@ -1,0 +1,41 @@
+
+<div class="flex-col">
+  <table>
+    <tr>
+      <th>
+        Serial No.
+      </th>
+      <th>
+        <%= link_to 'Title', url + "?sort=title&direction=#{toggle_direction(params[:direction])}"%>
+      </th>
+      <th>
+        <%= link_to 'Description', url + "?sort=description&direction=#{toggle_direction(params[:direction])}"%></th>
+      <th>
+        <%= link_to 'Due Date', url + "?sort=due_date&direction=#{toggle_direction(params[:direction])}" %>
+      </th>
+      <th>
+        Status
+      </th>
+      <th>
+        Edit
+      </th>
+      <th>
+        Delete
+      </th>
+
+    </tr>
+    <% @tasks.each.with_index((@tasks.current_page - 1) * @tasks.limit_value + 1 )  do |task, index| %>
+      <tr>
+        <td><%= index %></td>
+        <% task.attributes.slice("title", "description", "due_date", "status").each do |key, value| %>
+          <td class="text-center"><%= key == "due_date"? format_date(value) : value %></td>
+        <%end%>
+        <td><%= link_to "Edit Task", edit_task_path(task) %></td>
+        <td><%= button_to "Delete Task", task_path(task), method: :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="text-center">
+    <%= paginate @tasks %>
+  </div>
+</div>
