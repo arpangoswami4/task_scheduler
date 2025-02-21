@@ -17,6 +17,9 @@
         Status
       </th>
       <th>
+        View
+      </th>
+      <th>
         Edit
       </th>
       <th>
@@ -30,8 +33,9 @@
         <% task.attributes.slice("title", "description", "due_date", "status").each do |key, value| %>
           <td class="text-center"><%= key == "due_date"? format_date(value) : value %></td>
         <%end%>
-        <td><%= link_to "Edit Task", edit_task_path(task) %></td>
-        <td><%= button_to "Delete Task", task_path(task), method: :delete %></td>
+        <td><%= action_availability(task, "show?") { link_to("View Task", task_path(task)) } %></td>
+        <td><%= action_availability(task, "edit?") { link_to("Edit Task", edit_task_path(task)) }%></td>
+        <td><%= action_availability(task, "destroy?") { button_to("Delete Task", task_path(task), method: :delete) } %></td>
       </tr>
     <% end %>
   </table>

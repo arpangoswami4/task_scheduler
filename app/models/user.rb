@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :tasks
+
+  enum :role, %i[ super_admin creator editor destroyer viewer ]
 end

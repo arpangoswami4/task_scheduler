@@ -8,22 +8,33 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-30.times do |i|
-  Task.create!(
-    title: "#{i} Title",
-    description: "#{i.ordinalize} describing",
-    status: i%3,
-    due_date: Time.current + i.day * 2,
-    user: User.second
-  )
-end
+User.create!([
+  {email: "arpan.goswami@gmail.com",
+  password: "$2a$12$0gONh7ETi7G0y1stdXOgq.zbeMC150/GEUpbbuvEvvlwZx4hTPpke", #123qwe4r
+  name: "Test",
+  role: "viewer"},
+  {email: "arpan.goswami20@gmail.com",
+  password: "$2a$12$p.3JdUdAiAxGCW5HycqydOYZ6NdobiRcUYgWiql9HTa7Goz9.Sdwu", #123qwe4r
+  name: "Arpan",
+  role: "super_admin"
+}])
 
-(31..60).each do |i|
-  Task.create!(
-    title: "#{i} Title",
-    description: "#{i.ordinalize} describing",
-    status: i%3,
-    due_date: Time.current + i.hour * 12,
-    user: User.first
-  )
-end
+# 30.times do |i|
+#   Task.create!(
+#     title: "#{i} Title",
+#     description: "#{i.ordinalize} describing",
+#     status: i%3,
+#     due_date: Time.current + i.day * 2,
+#     user: User.second
+#   )
+# end
+
+# (31..60).each do |i|
+#   Task.create!(
+#     title: "#{i} Title",
+#     description: "#{i.ordinalize} describing",
+#     status: i%3,
+#     due_date: Time.current + i.hour * 12,
+#     user: User.first
+#   )
+# end
