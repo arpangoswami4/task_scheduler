@@ -4,18 +4,22 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.apply_filter(params.slice(:status, :search_term)).apply_sorting(params.slice(:sort, :direction), ["title", "description", "due_date"]).page(params[:page])
+    @tasks = policy_scope(@tasks)
+    authorize @tasks
   end
 
   def show
+    authorize @task
   end
 
   def new
     @task = current_user.tasks.new
+    authorize @task
   end
 
   def create
-    @task = current_user.tasks.create(task_params)
-
+    @task = current_user.tasks.new(task_params)
+    authorize @task
     if @task.save
     # redirect_to task_path(task.id)
       redirect_to @task
@@ -25,9 +29,11 @@ class TasksController < ApplicationController
   end
 
   def edit
+    authorize @task
   end
 
   def update
+    authorize @task
     if @task.update(task_params)
       redirect_to task_path(@task.id)
     else
@@ -36,12 +42,15 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    authorize @task
     @task.destroy
     redirect_to root_path
   end
 
   def user_tasks
     @tasks = current_user.tasks.apply_filter(params.slice(:status, :search_term)).apply_sorting(params.slice(:sort, :direction), ["title", "description", "due_date"]).page(params[:page])
+    @tasks = policy_scope(@tasks)
+    authorize @tasks
   end
 
   private
